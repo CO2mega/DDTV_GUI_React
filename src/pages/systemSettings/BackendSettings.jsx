@@ -5,6 +5,7 @@ import useHLSTime from "../../hooks/useHLSTime";
 import useRecordingPath from "../../hooks/useRecordingPath"
 import useFileNameAndPath from "../../hooks/useFileNameAndPath"
 import useLoginBiliBili from "../../hooks/useLoginBiliBili";
+import useGenerateDebugFile from "../../hooks/useGenerateDebugFile";
 import { useState } from "react";
 import dayjs from "dayjs";
 import { useTranslation } from "react-i18next";
@@ -226,7 +227,8 @@ const BackEnd = (props) => {
   >
     <Button type="primary" danger loading={isLoading} onClick={checkReinitialize}>{t('yangle')}</Button>
   </Popconfirm>
-
+  const { isLoading: isLoadingDebug, generate: generateDebugFile } = useGenerateDebugFile()
+  const debugButton = <Button type="primary" loading={isLoadingDebug} onClick={generateDebugFile}>{t('debug')}</Button>
   return <Row className="backtend-settings" align="middle" gutter={[16, 16]}>
     {loginStatus && setUser}
     {version && coreVersion}
@@ -237,6 +239,7 @@ const BackEnd = (props) => {
     {nameTable}
     <FullRow>{resetButton}</FullRow>
     <FullRow>{yangleButton}</FullRow>
+    <FullRow>{debugButton}</FullRow>
   </Row>
 }
 export default BackEnd

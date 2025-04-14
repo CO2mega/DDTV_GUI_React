@@ -8,3 +8,7 @@ export function getCoreVersion() {
 export function getSystemResource() {
   return instance.get<Response<any>>('system/get_system_resources')
 }
+
+export function generateDebugFile() {
+  return instance.get<Response<any>>('system/generate_debug_file_snapshot')
+}
